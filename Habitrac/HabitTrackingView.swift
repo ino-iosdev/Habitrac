@@ -23,13 +23,11 @@ struct HabitTrackingView: View {
                     Button("Mark as Completed") {
                         habit.completionCount += 1
                     }
-                    Text("Completed: \(habit.completionCount) times")
+                    Text("Completed: \(habit.completionCount) \(habit.completionCount < 2 ? "time" : "times")")
                 } header: {
                     Text("Tracking")
                 }
             }
-            .navigationTitle($habit.name)
-            .navigationBarTitleDisplayMode(.inline)
         }
 }
 

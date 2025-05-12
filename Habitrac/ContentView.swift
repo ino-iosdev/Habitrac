@@ -14,6 +14,20 @@ struct Habit: Identifiable, Codable, Equatable {
     var completionCount = 0
     
     static let example = Habit(name: "Swimming", description: "workout")
+    
+    func color() -> Color {
+        if self.completionCount < 3 {
+            .red
+        } else if self.completionCount < 10 {
+            .orange
+        } else if self.completionCount < 20 {
+            .green
+        } else if self.completionCount < 50 {
+            .blue
+        } else {
+            .indigo
+        }
+    }
 }
 
 struct ContentView: View {
@@ -36,7 +50,7 @@ struct ContentView: View {
                                 .font(.caption.weight(.black))
                                 .padding(5)
                                 .frame(minWidth: 50)
-                                .background(color(for: habit.wrappedValue))
+                                .background(habit.wrappedValue.color())
                                 .foregroundStyle(.white)
                                 .clipShape(.capsule)
                         }
@@ -54,20 +68,6 @@ struct ContentView: View {
                     Label("Add Habit", systemImage: "plus")
                 }
             }
-        }
-    }
-    
-    func color(for habit: Habit) -> Color {
-        if habit.completionCount < 3 {
-            .red
-        } else if habit.completionCount < 10 {
-            .orange
-        } else if habit.completionCount < 20 {
-            .green
-        } else if habit.completionCount < 50 {
-            .blue
-        } else {
-            .indigo
         }
     }
     
